@@ -1,0 +1,87 @@
+.fancy-text {
+    overflow: hidden;
+    text-align: center;
+
+}
+
+.fancy-text:before,
+.fancy-text:after {
+    background-color: #ccc;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 20%;
+    margin: 0 25px;
+}
+
+.fancy-text:before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+
+.fancy-text:after {
+    left: 0.5em;
+    margin-right: -50%;
+}
+
+.fancy {
+    margin-bottom: 10px;
+}
+
+
+
+.carousel-slide {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+}
+
+.step-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 100px;
+
+}
+
+.step-img-box>img {
+
+    height: 150px;
+}
+
+.step-text {
+
+    transform: translateX(-10rem);
+    flex-direction: column;
+    text-align: left;
+    padding-left: 100px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: -60px;
+    z-index: 1;
+    /* Đảm bảo carousel-in */
+
+}
+
+@media (max-width: 930px) {
+    .carousel-slide {
+        grid-template-columns: 1fr;
+    }
+
+    .step-img-box {
+        justify-content: center;
+        margin-right: 0;
+    }
+
+    .step-text {
+        margin-top: 10px;
+        transform: translateX(0);
+        text-align: center;
+        padding-left: 0;
+    }
+}

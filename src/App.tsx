@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @format */
 
-function App() {
+import React, { useState } from "react";
+
+import "./App.css";
+import Navbar from "./layouts/header/navbar/navbar";
+import Footer from "./layouts/footer/footer";
+import { HomePage } from "./layouts/hompage/HomePage";
+import { getAllBooks } from "./api/SachApi";
+import Header from "./layouts/header/Header";
+
+function App()
+{
+
+  const [name, setName] = useState('');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header name={name} setName={setName} />
+      <HomePage name={name} />
+      <Footer />
     </div>
   );
 }

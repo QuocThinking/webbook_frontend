@@ -1,0 +1,6 @@
+{
+   "prettier.printWidth": 1000,
+   "prettier.requireConfig": false,
+   "prettier.endOfLine": "auto",
+   "editor.defaultFormatter": "vscode.typescript-language-features"
+}

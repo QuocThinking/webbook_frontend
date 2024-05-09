@@ -1,0 +1,45 @@
+.load-data {
+    padding: 96px 0;
+
+}
+
+.list-product {
+    padding: 96px 0;
+
+}
+
+.center-v {
+    display: flex;
+    justify-content: center;
+    row-gap: 12px;
+}
+
+/* --- LOADER-SPINNER (Page - product)*/
+
+.spinner {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-s {
+    width: 48px;
+    height: 48px;
+    border: 5px dotted #22d4a7;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 2s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
