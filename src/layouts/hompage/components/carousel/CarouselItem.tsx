@@ -68,7 +68,7 @@ const CarouselItem: React.FC<CarouselItemInterFace> = ({ book }) =>
                         </div>
                         <div className="step-text">
                             <h5>{book.tenSach}</h5>
-                            <p>{book.moTa}</p>
+                            {/* <p>{book.moTa}</p> */}
                         </div>
                     </div>
                 </>

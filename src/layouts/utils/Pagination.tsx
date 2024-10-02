@@ -10,6 +10,7 @@ interface PaginationInterface
 
 const Pagination: React.FC<PaginationInterface> = (props) =>
 {
+
     const danhSachTrang = [];
     if (props.trangHienTai === 1)
     {
@@ -42,6 +43,8 @@ const Pagination: React.FC<PaginationInterface> = (props) =>
             danhSachTrang.push(props.trangHienTai + 2)
         }
     }
+
+
     return (
         <nav aria-label="Page navigation example">
             <ul className="pagination justify-content-center">

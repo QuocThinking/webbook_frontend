@@ -8,9 +8,10 @@ import Pagination from "../utils/Pagination";
 interface PageListInterface
 {
     name: string;
+    maTheLoai: number
 }
 
-function PageListProduct({ name }: PageListInterface)
+function PageListProduct({ name, maTheLoai }: PageListInterface)
 {
 
     const [listBooks, setListBooks] = useState<SachModel[]>([])
@@ -18,14 +19,19 @@ function PageListProduct({ name }: PageListInterface)
     const [error, setError] = useState(null)
     const [trangHienTai, setTrangHienTai] = useState(1)
     const [tongSoTrang, setTongSoTrang] = useState(0);
-    const [tongSoSach, setTongSoSach] = useState(0);
+    // const [tongSoSach, setTongSoSach] = useState(0);
+    const [show, setShow] = useState(true)
+
+
+
+
     useEffect(() =>
     {
+        console.log("Example Render")
         setLoadingData(true)
         setTimeout(() =>
         {
-
-            if (name === '')
+            if (name === '' && maTheLoai === 0)
             {
                 getAllBooks(trangHienTai - 1)
                     .then(
@@ -46,7 +52,7 @@ function PageListProduct({ name }: PageListInterface)
                     )
             } else
             {
-                findSachByName(name).then(
+                findSachByName(name, maTheLoai).then(
                     data =>
                     {
                         setListBooks(data.ketQua);
@@ -65,8 +71,13 @@ function PageListProduct({ name }: PageListInterface)
             }
         }, 500)
 
+        // Clean up function
+        // return () =>
+        // {
+        //     console.log("Unmouting...")
+        // }
+    }, [trangHienTai, name, maTheLoai, show])
 
-    }, [trangHienTai, name])
 
 
     const PhanTrang = (trang: number) =>
@@ -113,9 +124,12 @@ function PageListProduct({ name }: PageListInterface)
                     ) : (
                         <>
                             <div className="row mt-4 center-v mb-4">
+                                {/* <h1>Day la example</h1>
+                                <button onClick={() => setShow(!show)}>Click show exam</button> */}
                                 {listBooks.map((book) => (
                                     <LoadProduct key={book.maSach} book={book} />
                                 ))}
+
                             </div>
                             <Pagination trangHienTai={trangHienTai} tongSoTrang={tongSoTrang} phanTrang={PhanTrang} />
                         </>

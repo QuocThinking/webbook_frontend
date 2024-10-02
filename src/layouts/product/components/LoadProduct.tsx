@@ -5,6 +5,9 @@ import HinhAnhModel from "../../../models/HinhAnhModel";
 
 import '../../product/components/load.css'
 import { getAllImageByBook, getOnetImageOfBook } from "../../../api/HinhAnhApi";
+import { Link } from "react-router-dom";
+import renderRating from "../../utils/StartLevel";
+import { formatingNumber } from "../../utils/FormatingNumber";
 
 interface SachModelInterFace
 {
@@ -65,20 +68,28 @@ const LoadProduct: React.FC<SachModelInterFace> = ({ book }) =>
                 <>
                     <div className='card'>
                         <div className="card-img">
-                            <img src={dataAnh} className='card-img-top'
-                                alt={book.tenSach} style={{ height: '200px', width: '150px' }}></img>
+                            <Link to={`/sach/${book.tenSach}`} >
+                                <img src={dataAnh} className='card-img-top'
+                                    alt={book.tenSach} style={{ height: '200px', width: '150px' }}></img>
+                            </Link>
+
                         </div>
                         <div className='card-body'>
-                            <h5 className='card-title'>{book.tenSach}</h5>
-                            <p className='card-text'>{book.moTa}</p>
+                            <Link to={`sach/${book.maSach}`} style={{ textDecoration: 'none' }}>
+                                <h5 className='card-title'>{book.tenSach}</h5>
+                            </Link>
+                            {/* <p className='card-text'>{book.moTa}</p> */}
                             <div className='price'>
                                 <span className='original-price'>
-                                    <del>{book.giaNiemYet}</del>
+                                    <del>{formatingNumber(book.giaNiemYet)}</del>
                                 </span>
                                 <span>&rarr;</span>
                                 <span className='discounted-price'>
-                                    <strong>{book.giaBan}</strong>
+                                    <strong>{formatingNumber(book.giaBan)} vnđ</strong>
                                 </span>
+                            </div>
+                            <div>
+                                {renderRating(book.trungBinhXepHang ? book.trungBinhXepHang : 0)}
                             </div>
                             <div className='row mt-2' role='group'>
                                 <div className='col-6'>
@@ -93,6 +104,7 @@ const LoadProduct: React.FC<SachModelInterFace> = ({ book }) =>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </>
             )}

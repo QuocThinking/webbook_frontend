@@ -3,7 +3,7 @@ import '../style.css'
 
 export function Banner() {
     return (
-        <div id='banner'>
+        <div id='banner' className='center-v'>
             <div id='banner' className="p-5 banner-bg  bg-image d-flex justify-content-center align-items-center">
                 <div className="container-fluid py-5 text-white d-flex justify-content-center align-items-center ">
                     <div>

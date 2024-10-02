@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import '../style.css'
+import { Link, NavLink } from "react-router-dom";
+import { HomePage } from "../../hompage/HomePage";
 
 interface NavbarInterface
 {
@@ -11,7 +13,7 @@ interface NavbarInterface
 function Navbar({ name, setName }: NavbarInterface)
 {
     const [showNavbar, setShowNavbar] = useState(false);
-
+    const [tempSearch, setTempSearch] = useState('');
     useEffect(() =>
     {
         const handleScroll = () =>
@@ -36,11 +38,12 @@ function Navbar({ name, setName }: NavbarInterface)
         };
     }, []);
 
-    let tempSearch: string = "";
+
+
     //su kien thay doi noi dung
     const onSearchInputChange = (e: ChangeEvent<HTMLInputElement>) =>
     {
-        tempSearch = e.target.value;
+        setTempSearch(e.target.value);
     }
     const handleSearch = () =>
     {
@@ -65,18 +68,30 @@ function Navbar({ name, setName }: NavbarInterface)
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Thể Loại Sách
                                 </a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a className="dropdown-item" href="#">Thể Loại 1</a></li>
-                                    <li><a className="dropdown-item" href="#">Thể loại 2</a></li>
-                                    <li><a className="dropdown-item" href="#">Thể loại 3</a></li>
+                                    <li><a className="dropdown-item" href="/1">Thể Loại 1</a></li>
+                                    <li><a className="dropdown-item" href="/5">Thể loại 2</a></li>
+                                    <li><a className="dropdown-item" href="/6">Thể loại 3</a></li>
                                     <li><hr className="dropdown-divider"></hr></li>
                                     <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Thể Loại Sách
+                                </Link>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><Link className="dropdown-item" to="/1">Thể Loại 1</Link></li>
+                                    <li><Link className="dropdown-item" to="/5">Thể loại 2</Link></li>
+                                    <li><Link className="dropdown-item" to="/6">Thể loại 3</Link></li>
+                                    <li><hr className="dropdown-divider"></hr></li>
+                                    <li><Link className="dropdown-item" to="#">Something else here</Link></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
@@ -96,8 +111,18 @@ function Navbar({ name, setName }: NavbarInterface)
                             </li>
                         </ul>
                         <div className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                                onChange={onSearchInputChange} value={tempSearch} />
+                            <input className="form-control me-2" type="search"
+                                placeholder="Search" aria-label="Search"
+                                onChange={onSearchInputChange}
+                                value={tempSearch}
+                                onKeyPress={(e) =>
+                                {
+                                    if (e.key === 'Enter')
+                                    {
+                                        handleSearch()
+                                    }
+                                }}
+                            />
                             <button className="btn  btn-search" type="submit" onClick={handleSearch}>Search</button>
                         </div>
                         <ul className="navbar-nav me-l">
@@ -118,8 +143,8 @@ function Navbar({ name, setName }: NavbarInterface)
                     </div>
                 </div>
 
-            </nav>
-        </div>
+            </nav >
+        </div >
 
     )
 }

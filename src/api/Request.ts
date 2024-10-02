@@ -9,7 +9,7 @@ export async function request(endpoint: string)
         throw new Error(`Not access the path: ${endpoint}`);
     }
 
-    console.log('Requested: ' + response)
+    // console.log('Requested: ' + response)
 
     // OK
     // chuyển chuổi json thành 1 mảng các object
